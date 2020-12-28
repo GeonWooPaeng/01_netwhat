@@ -22,10 +22,13 @@
   - switching : 동일 network-id를 가진 시스템의 통신
   - protocol :  컴퓨터나 원거리 통신 사이에서 메세지를 주고 받는 양식 / 규칙 체계
   - 패킷 : L4에서 전달받은 segment + L3의 정보 = 패킷
+  - localhost : 127.0.0.1(예약된 IP주소로 인터넷상에 일반 IP로는 쓸 수 X)
+  - CIDR (Class Inter-Domain Routing) : 클래스 없는 도메인 간 라우팅 기법
 
 
 
 ## 종류
+
 1. IPv4
    - 32 bit 구성으로 일반적인 ip 주소
    - 0.0.0.0 ~ 255.255.255.255 까지 숫자 조합으로 이루어짐 (중간 사설 주소는 사용 X)
@@ -42,6 +45,12 @@
 
    - 정해진 규칙에 따라서 network-id가 정해진다.
 
+   - 맨 앞자리 주소(네트워크 주소)와 맨 뒷자리 주소(브로드캐스트 주소) 이므로 사용 불가
+
+     - ex) A class에서 0.0.0.0(네트워크 주소), 127.255.255.255(브로드캐스트 주소) 사용불가
+
+     
+
      #### << 형태 >>
 
      X.X.X.X [X 10진수] 
@@ -49,25 +58,25 @@
      xxxx xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx [x 2진수]
 
      를 가지며 A, B, C, D, E class가 존재 합니다.
+     
+     
+     
+     ![한국인터넷정보센터](https://user-images.githubusercontent.com/53526987/103192034-91dba380-491a-11eb-961f-526c06859561.jpeg)
 
      
-  
-    ![한국인터넷정보센터](https://user-images.githubusercontent.com/53526987/103192034-91dba380-491a-11eb-961f-526c06859561.jpeg)
      
+     ##### 1.  A class (0 ~ 127)
      
-     
-    ##### 1.  A class (0 ~ 127)
+     - 0xxx xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 0 이 고정)
+     - 0000 0000.0000 0000.0000 0000.0000 0000 ~ 0111 1111.1111 1111.1111 1111.1111 1111
+     - 0.0.0.0 ~ 127.255.255.255
+     - 구분 : 첫 X - network-id (2^(8 - 1)) + 나머지 X.X.X - host-id (2^24)
+   	- ex) 11.1.1.1 -> 11 / 1.1.1
 
-    - 0xxx xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 0 이 고정)
-    - 0000 0000.0000 0000.0000 0000.0000 0000 ~ 0111 1111.1111 1111.1111 1111.1111 1111
-    - 0.0.0.0 ~ 127.255.255.255
-    - 구분 : 첫 X - network-id (2^(8 - 1)) + 나머지 X.X.X - host-id (2^24)
-    - ex) 11.1.1.1 -> 11 / 1.1.1
-     
-        
-        
+   	
+   	
    	##### 2. B class (128 ~ 191)
-
+   	
    	- 10xx xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 10 이 고정)
    	- 1000 0000.0000 0000.0000 0000.0000 0000 ~ 1011 1111.1111 1111.1111 1111.1111 1111
    	- 128.0.0.0 ~ 191.255.255.255
@@ -79,22 +88,22 @@
    	##### 3. C class (192 ~ 223)
    	
    	- 110x xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 110 이 고정)
-   	- 1100 0000.0000 0000.0000 0000.0000 0000 ~ 1101 1111.1111 1111.1111 1111.1111 1111
-   	- 192.0.0.0 ~ 223.255.255.255
-   	- 구분 : X.X.X - network-id (2^(24 - 3)) + 나머지 X - host-id (2^8)
+     - 1100 0000.0000 0000.0000 0000.0000 0000 ~ 1101 1111.1111 1111.1111 1111.1111 1111
+     - 192.0.0.0 ~ 223.255.255.255
+     - 구분 : X.X.X - network-id (2^(24 - 3)) + 나머지 X - host-id (2^8)
    	- ex) 195.1.1.1 -> 195.1.1 / 1
-     
-     
-     
-   	##### 4. D class (multicast 용)
 
-   	- 네트워크 개념 X
    	
-   	- 1110 xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 0이 고정)
+   	
+   	##### 4. D class (multicast 용)
+   	
+     - 네트워크 개념 X
+     
+     - 1110 xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 0이 고정)
    	- 1110 0000.0000 0000.0000 0000.0000 0000 ~ 1110 1111.1111 1111.1111 1111.1111 1111
-     - 224.0.0.0 ~ 239.255.255.255
-     
-     
+   	- 224.0.0.0 ~ 239.255.255.255
+   	
+   	
    	
    	##### 5. E class (연구용, 예약된 주소)
    	
@@ -152,7 +161,7 @@
   1. ### 10.0.0.0 ~ 10.255.255.255
    
      
-        - 0000 1010.		0000 0000.0000 0000.0000 0000 ~ 0000 1010.			1111 1111.1111 1111.1111 1111
+        - 0000 1010.		0000 0000.0000 0000.0000 0000 ~ 0000 1010.		1111 1111.1111 1111.1111 1111
         - 10.0.0.0/8
         
         
@@ -178,17 +187,31 @@
 
 
 
+# Broadcast Address & Network Address
 
-# Broadcast Address 
+## Broadcast Address
 
 - 네트워크 주소 다중 접속에 접속 된 모든 장치들에 전송하는데 사용되는 통신 네트워크
-- 네트워크에 연결된 모든 호스트에서 수신 하는 address
+- 네트워크에 연결된 모든 호스트에서 수신 하는 address 
+- subnet-mask의 '0'부분을 1로 바꾼 것
+
+#### Calculator
+
+- IP Address	XAND	Netmask = Broadcast 
 
 
 
-### Calculator
+## Network Address
 
-IP Address	XAND	Netmask = Broadcast 
+- 하나의 네트워크를 부르는 것 (첫번째 IP 주소)
+
+
+
+#### Calculator
+
+- IP Address   AND   subnet-mask = Network Address
+
+
 
 
 
@@ -229,8 +252,11 @@ IP Address	XAND	Netmask = Broadcast
 
 - 개발용이
 
+
+
+
 |layer|HOSTA|Request|HOSTB|
-|----|----|----|----|
+|:----:|:----:|:----:|:----:|
 |7|Application|<< DATA >>|Application|
 |6|Presentation|<< DATA >>|Presentation|
 |5|Session|<< DATA >>|Session|
@@ -238,6 +264,7 @@ IP Address	XAND	Netmask = Broadcast
 |3|Network|<< Packets >>|Network|
 |2|DataLink|<< Frame >>|DataLink|
 |1|Physical|<< Bits >>|Physical|
+
 
 
 
@@ -288,12 +315,13 @@ IP Address	XAND	Netmask = Broadcast
 - 연결지향 protocol : 통신하기 전에 사전에 미리 통신 채널을 만든다.
   
   - 신뢰성 있는 protocol(확인 후 실행) 
+  
 - UDP 보다 속도가 느리다.
   
   
   
-  #### UDP(User Datagram Protocol)
-  
+#### UDP(User Datagram Protocol)
+
   - 비연결지향 protocol : best effort 최선을 다해 전송
   - 비신뢰성 protocol(확인 안하고 실행) 그러나 상위 계층에서 신뢰성 확보
   - TCP 보다 속도가 빠르다. (여러 지점에 전송 가능)
