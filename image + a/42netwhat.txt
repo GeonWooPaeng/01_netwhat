@@ -1,0 +1,16 @@
+- netwhat 사이트 -
+http://jodies.de/ipcalc?host=255.255.128.12&mask1=16&mask2=
+
+https://github.com/365kim/42_cursus/tree/master/2_netwhat
+
+https://github.com/adblanc/netwhat42-train
+
+https://velog.io/@hidaehyunlee/Netwhat-%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-%EC%A0%95%EB%A6%AC
+
+
+
+-----------------------------
+
+https://velog.io/@hidaehyunlee/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8-%ED%8C%A8%ED%82%B7-%ED%97%B7%EA%B0%88%EB%A6%B4-%EB%95%90-PDU%EB%A5%BC-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90
+https://shlee0882.tistory.com/110
+https://github.com/JaeSeoKim/42cursus/tree/master/01_netwhat
