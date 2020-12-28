@@ -39,7 +39,7 @@
 
    
 
-     ### Classful
+     ## Classful
 
    - network-id가 고정되어 있다.
 
@@ -115,14 +115,14 @@
    	
    	
 
-    ### Classless
+    ## Classless
 
      - network-id가 유동적이다.
      - 정해진 규칙이 없다.
 
    
 
-     #### << NetMask & SubnetMask>> 
+     ### << NetMask & SubnetMask>> 
 
      - network-id + mask
 
@@ -130,7 +130,7 @@
 
      - 현재는 구분이 사라졌다. 그러나 나누자면 netmask를 작게 자른 것이 subnetmask라고 한다.
 
-       ##### +
+       #### +
 
        SubnetMask 
 
@@ -144,7 +144,7 @@
 
        
 
-     ##### Private address (인터넷이 안되는 주소 = 사설 망)
+     ### Private address (인터넷이 안되는 주소 = 사설 망)
 
      - RFC 1918 표준
 
