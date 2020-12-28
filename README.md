@@ -26,7 +26,6 @@
 
 
 ## 종류
-
 1. IPv4
    - 32 bit 구성으로 일반적인 ip 주소
    - 0.0.0.0 ~ 255.255.255.255 까지 숫자 조합으로 이루어짐 (중간 사설 주소는 사용 X)
@@ -52,21 +51,21 @@
      를 가지며 A, B, C, D, E class가 존재 합니다.
 
      
+  
+    ![한국인터넷정보센터](https://user-images.githubusercontent.com/53526987/103192034-91dba380-491a-11eb-961f-526c06859561.jpeg)
+     
+     
+     
+    ##### 1.  A class (0 ~ 127)
 
-     ![한국인터넷정보센터](https://user-images.githubusercontent.com/53526987/103192034-91dba380-491a-11eb-961f-526c06859561.jpeg)
+    - 0xxx xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 0 이 고정)
+    - 0000 0000.0000 0000.0000 0000.0000 0000 ~ 0111 1111.1111 1111.1111 1111.1111 1111
+    - 0.0.0.0 ~ 127.255.255.255
+    - 구분 : 첫 X - network-id (2^(8 - 1)) + 나머지 X.X.X - host-id (2^24)
+    - ex) 11.1.1.1 -> 11 / 1.1.1
      
-     
-     
-     ##### 1.  A class (0 ~ 127)
-
-     - 0xxx xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 0 이 고정)
-     - 0000 0000.0000 0000.0000 0000.0000 0000 ~ 0111 1111.1111 1111.1111 1111.1111 1111
-     - 0.0.0.0 ~ 127.255.255.255
-     - 구분 : 첫 X - network-id (2^(8 - 1)) + 나머지 X.X.X - host-id (2^24)
-     - ex) 11.1.1.1 -> 11 / 1.1.1
-     
-     
-     
+        
+        
    	##### 2. B class (128 ~ 191)
 
    	- 10xx xxxx.xxxx xxxx.xxxx xxxx.xxxx xxxx (앞에 나와 있는 10 이 고정)
@@ -230,24 +229,15 @@ IP Address	XAND	Netmask = Broadcast
 
 - 개발용이
 
-
-
-
-##### 							 HOSTA 															    HOSTB
-
-##### 		7	Application				 << DATA >>				 Application
-
-##### 		6	Presentation			  << DATA >>				Presentation
-
-##### 		5 	   Session				     << DATA >>					Session
-
-##### 		4 	Transport			    << Segments >>			 Transport
-
-##### 		3	   Network				  << Packets >>				Network
-
-##### 		2	   DataLink				  << Frame >>				  DataLink
-
-##### 		1       Physical					   << Bits >>					 Physical
+|layer|HOSTA|Request|HOSTB|
+|----|----|----|----|
+|7|Application|<< DATA >>|Application|
+|6|Presentation|<< DATA >>|Presentation|
+|5|Session|<< DATA >>|Session|
+|4|Transport|<< Segments >>|Transport|
+|3|Network|<< Packets >>|Network|
+|2|DataLink|<< Frame >>|DataLink|
+|1|Physical|<< Bits >>|Physical|
 
 
 
